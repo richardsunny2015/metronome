@@ -3,6 +3,19 @@
             [clojure.spec.test.alpha :as stest]
             [clojure.string :as cstr]))
 
+;; Will be used for calculating time to display
+(defn- calculate-seconds
+  "Takes a number of seconds and returns the seconds
+   left in a minute."
+  [seconds]
+  (mod seconds 60))
+
+(defn- calculate-minutes
+  "Takes a number of seconds and returns the amount of minutes
+   you can make with those seconds."
+  [seconds]
+  (quot seconds 60))
+
 (defn- parse-int
   [int]
   (Integer/parseInt int))
