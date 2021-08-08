@@ -1,6 +1,6 @@
 # metronome
 
-Takes total and interval duration and beeps on every interval and end of total duration.
+Takes total duration and frequency, calculates and beeps on every interval during total duration.
 
 ## License
 
