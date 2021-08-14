@@ -1,17 +1,17 @@
 (ns metronome.core
   (:require [metronome
              [sounds :refer [play-beep]]
-             [time :as time]]))
+             [time :as time]]
+            [overtone.at-at :refer [every stop mk-pool]]))
 
-(defn beep-future
+(defn beep-periodically
   "Creates a future that beeps every
    x seconds. Returns future object to 
    be cancelled later."
   [x]
-  (future
-    (while true
-      (Thread/sleep (* 1000 x))
-      (play-beep))))
+  (every (* 1000 x)
+         play-beep
+         (mk-pool)))
 
 (defn print-countdown
   "Prints out countdown timer."
@@ -29,7 +29,7 @@
         total-seconds (time/parse-time-str time-str)
         interval (time/calculate-interval total-seconds
                                           (Integer/parseInt frequency))
-        beep-interval (beep-future interval)]
+        beep-interval (beep-periodically interval)]
     (print-countdown total-seconds)
-    (future-cancel beep-interval)
+    (stop beep-interval)
     (System/exit 0)))
