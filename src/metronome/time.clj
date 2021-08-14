@@ -64,5 +64,6 @@
   :args (s/cat :seconds ::seconds)
   :ret ::time-str)
 
-(stest/instrument `parse-time-str
-                  `calculate-interval)
+(stest/instrument [`parse-time-str
+                   `calculate-interval
+                   `seconds->time-str])
