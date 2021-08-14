@@ -36,11 +36,17 @@
     (+ (* 60 minutes)
        seconds)))
 
+(defn seconds->time-str
+  [sec]
+  (let [minutes (calculate-minutes sec)
+        seconds (calculate-seconds sec)]
+    (format "%02d:%02d" minutes seconds)))
+
 (defn calculate-interval
   [seconds frequency]
   (/ seconds frequency))
 
-(s/def ::seconds number?)
+(s/def ::seconds nat-int?)
 (s/def ::frequency pos-int?)
 (s/def ::interval pos?)
 (s/def ::time-str time-str?)
@@ -53,6 +59,10 @@
   :args (s/cat :seconds ::seconds
                :frequency ::frequency)
   :ret ::seconds)
+
+(s/fdef seconds->time-str
+  :args (s/cat :seconds ::seconds)
+  :ret ::time-str)
 
 (stest/instrument `parse-time-str
                   `calculate-interval)
