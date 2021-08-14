@@ -2,6 +2,17 @@
 
 Takes total duration and frequency, calculates and beeps on every interval during total duration.
 
+## Usage
+
+Program takes duration as `MM:SS` and the frequency of beeps during total duration.
+Example of running with lein
+
+```
+lein run 10:00 60
+```
+
+The above example means to countdown 10 minutes and beep 60 times within those 10 minutes.
+
 ## License
 
 Copyright © 2021 FIXME
