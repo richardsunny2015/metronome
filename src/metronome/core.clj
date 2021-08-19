@@ -25,10 +25,14 @@
 
 (defn -main
   [& args]
-  (let [[time-str frequency] args
-        total-seconds (time/parse-time-str time-str)
+  (let [[minutes-str beeps-per-minute] args
+        ;; TODO allow time-str as optional argument
+        #_#_total-seconds (time/parse-time-str time-str)
+        minutes (Integer/parseInt minutes-str)
+        total-seconds (* 60 minutes)
         interval (time/calculate-interval total-seconds
-                                          (Integer/parseInt frequency))
+                                          (* minutes
+                                             (Integer/parseInt beeps-per-minute)))
         beep-interval (beep-periodically interval)]
     (print-countdown total-seconds)
     (stop beep-interval)
