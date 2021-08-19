@@ -23,7 +23,7 @@
 (defn- time-str?
   [time-str]
   (and (string? time-str)
-       (not (nil? (re-matches #"\d\d:\d\d" time-str)))))
+       (not (nil? (re-matches #"\d+:\d+" time-str)))))
 
 ;; API
 
